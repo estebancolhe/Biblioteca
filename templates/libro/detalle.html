@@ -1,0 +1,29 @@
+<h1>Detalle Libro</h1>
+
+<!-- {{ object }} -->
+<p>{{ libro.titulo }}</p>
+<p>{{ libro.fecha }}</p>
+<p>{{ libro.categoria }}</p>
+<!-- tambien puedo acceder al contexto con el nombre de la misma tabla que deseamos mostrar
+pero en minuscula, ejm si deseo ver la informacion del modelo Libro
+puedo cambiar object por libro y funcionaria perfectamente.  
+{{ libro }}-->
+
+<!-- como el atributo autores del modelo Libro es una relacion many to many
+eso quiere decir que el atributo autores guarda una lista de autores
+y para poder mostrarlos todos es necesario iterarlos -->
+<p>------------------------------Many to Many----------------------------------</p>
+
+<ul>
+    {% for autor in libro.autores.all %} <!-- libro(hace refrencia al modelo libro).autores
+        (referencia al campo autores que es ManyToMany).all(traigamelos todos) -->
+        <li>{{ autor }}</li>
+    {% endfor %}
+</ul>
+
+<p>------------------------------Agregar Autores--------------------------------</p>
+
+<form method="POST">
+    <input type="text" placeholder="agregar autor">
+    <button type="submit">Guardar</button>
+</form>
